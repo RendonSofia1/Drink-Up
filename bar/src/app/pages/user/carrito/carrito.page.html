@@ -1,9 +1,15 @@
 <app-toolbar title="Carrito"></app-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">carrito</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-item>
+    <ion-label>Total</ion-label>
+    <ion-label slot="end">{{200|currency}}</ion-label>
+  </ion-item>
+  <app-card-carrito></app-card-carrito>
+  <app-card-carrito></app-card-carrito>
+  <app-card-carrito></app-card-carrito>
+  <app-card-carrito></app-card-carrito>
+  <app-card-carrito></app-card-carrito>
+
+  <ion-button expand="block" color="primary">Pedir</ion-button>
 </ion-content>
