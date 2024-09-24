@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 export const routes: Routes = [
   {
@@ -11,7 +12,33 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'menu',
-    loadComponent: () => import('./pages/user/menu/menu.page').then( m => m.MenuPage)
+    path: 'tabs',
+    component: TabsComponent,
+    children: [
+      {
+        path: 'menu',
+        loadComponent: () =>
+          import('./pages/user/menu/menu.page').then((m) => m.MenuPage),
+      },
+      {
+        path: 'carrito',
+        loadComponent: () =>
+          import('./pages/user/carrito/carrito.page').then(
+            (m) => m.CarritoPage
+          ),
+      },
+      {
+        path: 'checkout',
+        loadComponent: () =>
+          import('./pages/user/checkout/checkout.page').then(
+            (m) => m.CheckoutPage
+          ),
+      },
+      {
+        path: 'cuenta',
+        loadComponent: () =>
+          import('./pages/cuenta/cuenta.page').then((m) => m.CuentaPage),
+      },
+    ],
   },
 ];

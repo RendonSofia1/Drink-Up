@@ -1,3 +1,20 @@
-<p>
-  tabs works!
-</p>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="menu" routerLink="/tabs/menu" routerLinkActive="active">
+      <ion-icon name="wine-sharp"></ion-icon>
+      Menú
+    </ion-tab-button>
+    <ion-tab-button tab="carrito" routerLink="/tabs/carrito" routerLinkActive="active">
+      <ion-icon name="cart"></ion-icon>
+      Carrito
+    </ion-tab-button>
+    <ion-tab-button tab="checkout" routerLink="/tabs/checkout" routerLinkActive="active">
+      <ion-icon name="receipt-outline"></ion-icon>
+      Checkout
+    </ion-tab-button>
+    <ion-tab-button tab="cuenta" routerLink="/tabs/cuenta" routerLinkActive="active">
+      <ion-icon name="person-circle"></ion-icon>
+      Cuenta
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
