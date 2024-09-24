@@ -1,16 +1,28 @@
 .login-back{
   background-image: url('/assets/images/barback.png') !important;
-  background-size: cover;
-  background-position: center;
+  background-size: 100% 59%;
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
   position: relative;
 }
 
+.logo-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 170px;
+}
+
+.logo{
+  background-color: white;
+  border-radius: 200px;
+  width: 120px;
+}
+
 .login-container{
   background-color: white;
-  border-top-right-radius: 90px;
+  border-top-right-radius: 80px;
   position: absolute;
   bottom: 0;
 }
