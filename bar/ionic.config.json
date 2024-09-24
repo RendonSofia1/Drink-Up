@@ -1,7 +1,0 @@
-{
-  "name": "bar",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
-}
