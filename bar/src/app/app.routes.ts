@@ -10,4 +10,8 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'menu',
+    loadComponent: () => import('./pages/user/menu/menu.page').then( m => m.MenuPage)
+  },
 ];

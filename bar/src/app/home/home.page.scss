@@ -1,27 +1,31 @@
-#container {
-  text-align: center;
+.login-back{
+  background-image: url('/assets/images/barback.png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
 
+.login-container{
+  background-color: white;
+  border-top-right-radius: 90px;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 0;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+
+ion-input{
+  --border-radius: 10px !important;
+  --background: #DBDBDB !important;
+  --padding-bottom: 12px ;
+  --padding-top: 12px;
+  --padding-start:15px ;
+  --padding-end:15px ;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+.colInput{
+  padding: 0 30px;
+  margin-bottom: 15px;
 }
