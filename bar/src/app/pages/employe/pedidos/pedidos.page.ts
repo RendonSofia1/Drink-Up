@@ -22,8 +22,8 @@ import {
   IonText,
   IonList,
   IonItem,
-  IonButton,
-} from '@ionic/angular/standalone';
+  IonButton, IonListHeader, IonAvatar,
+  IonThumbnail} from '@ionic/angular/standalone';
 import { ToolbarComponent } from '../../../components/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import {
@@ -33,13 +33,14 @@ import {
   wine,
 } from 'ionicons/icons';
 import { CardPagoComponent } from 'src/app/components/card-pago/card-pago.component';
+import { ListComandaComponent } from "../../../components/list-comanda/list-comanda.component";
 
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.page.html',
   styleUrls: ['./pedidos.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonAvatar, IonListHeader,
     IonButton,
     IonItem,
     IonList,
@@ -64,15 +65,15 @@ import { CardPagoComponent } from 'src/app/components/card-pago/card-pago.compon
     FormsModule,
     ToolbarComponent,
     IonSegment,
-    CardPagoComponent
-  ],
+    CardPagoComponent,
+    IonThumbnail, ListComandaComponent],
 })
 export class PedidosPage implements OnInit {
   constructor() {
     addIcons({ wine, notificationsCircle, chevronForwardOutline, wallet });
   }
 
-  selectedSegment: string = 'pago';
+  selectedSegment: string = 'preparacion';
 
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
