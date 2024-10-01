@@ -15,6 +15,7 @@ import {
   IonAvatar,
 } from '@ionic/angular/standalone';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -36,8 +37,10 @@ import {
     RouterLink
   ],
 })
+
 export class HomePage {
   constructor() {}
 
-  
+
+
 }

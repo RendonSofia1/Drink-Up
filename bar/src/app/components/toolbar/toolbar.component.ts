@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   standalone: true,
-  imports: [IonicModule]
+  imports: [IonHeader, IonToolbar, IonTitle]
 })
 export class ToolbarComponent  implements OnInit {
   @Input() title?: string;

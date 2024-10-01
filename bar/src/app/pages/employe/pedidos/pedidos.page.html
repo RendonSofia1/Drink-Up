@@ -1,0 +1,28 @@
+<app-toolbar title="Pedidos"></app-toolbar>
+
+<ion-content [fullscreen]="true">
+  <ion-segment class="segment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="preparacion">
+      <ion-icon name="wine"></ion-icon>
+      <ion-label class="label">Por preparar</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="entrega">
+      <ion-icon name="notifications-circle"></ion-icon>
+      <ion-label>Por entregar</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pago">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Pago solicitado</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  @if (selectedSegment === 'preparacion') {
+  <h1>preparacion</h1>
+  } @if (selectedSegment === 'entrega') {
+  <h1>Entega</h1>
+  } @if (selectedSegment === 'pago') {
+    <app-card-pago></app-card-pago>
+    <app-card-pago></app-card-pago>
+    <app-card-pago></app-card-pago>
+  }
+</ion-content>
