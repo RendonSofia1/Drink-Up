@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonCard, IonLabel, IonCardHeader, IonGrid, IonRow, IonCol, IonCardTitle, IonCardSubtitle, IonBadge, IonCardContent, IonList, IonItem, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,8 +12,13 @@ import { IonCard, IonLabel, IonCardHeader, IonGrid, IonRow, IonCol, IonCardTitle
 })
 export class CardPagoComponent  implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: Router,
+  ) { }
 
   ngOnInit() {}
 
+  OpenDatailOrden(){
+    this.route.navigateByUrl('/detail');
+  }
 }
