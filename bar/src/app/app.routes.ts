@@ -46,10 +46,16 @@ export const routes: Routes = [
             (m) => m.PedidosPage
           ),
       },
+      {
+        path: 'drinks',
+        loadComponent: () =>
+          import('./pages/admin/drinks/drinks.page').then((m) => m.DrinksPage),
+      },
     ],
-  },  {
-    path: 'detail',
-    loadComponent: () => import('./pages/employe/detail/detail.page').then( m => m.DetailPage)
   },
-
+  {
+    path: 'detail',
+    loadComponent: () =>
+      import('./pages/employe/detail/detail.page').then((m) => m.DetailPage),
+  },
 ];

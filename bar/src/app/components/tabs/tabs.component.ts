@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standalone';
+import {
+  IonIcon,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { cart, personCircle, receiptOutline, wineSharp } from 'ionicons/icons';
 
@@ -16,7 +21,14 @@ interface Tab {
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, IonTabs, IonTabBar, IonTabButton, IonIcon],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+  ],
 })
 export class TabsComponent implements OnInit {
   userType: string = '';
@@ -24,7 +36,7 @@ export class TabsComponent implements OnInit {
 
   constructor() {
     addIcons({ wineSharp, cart, receiptOutline, personCircle });
-    this.userType = 'mesero';
+    this.userType = 'administrador';
     this.setTabs();
   }
 
@@ -70,6 +82,12 @@ export class TabsComponent implements OnInit {
       ];
     } else if (this.userType === 'administrador') {
       this.tabs = [
+        {
+          tab: 'drinks',
+          icon: 'wine-sharp',
+          label: 'Drinks',
+          route: '/tabs/drinks',
+        },
         {
           tab: 'cuenta',
           icon: 'person-circle',
