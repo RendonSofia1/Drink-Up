@@ -1,144 +1,144 @@
-<app-toolbar title="Bebidas"></app-toolbar>
+  <app-toolbar title="Bebidas"></app-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-searchbar
-    [debounce]="1000"
-    show-clear-button="focus"
-    placeholder="Busca una bebida"
-    class="ion-padding"
-  ></ion-searchbar>
+  <ion-content [fullscreen]="true">
+    <ion-searchbar
+      [debounce]="1000"
+      show-clear-button="focus"
+      placeholder="Busca una bebida"
+      class="ion-padding"
+    ></ion-searchbar>
 
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button id="open-modal-add">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button id="open-modal-add">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
-  <ion-card>
-    <ion-item lines="full">
-      <ion-thumbnail slot="start">
-        <img
-          alt="Silhouette of mountains"
-          src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
-        />
-      </ion-thumbnail>
-      <ion-label>
-        <h2>Mojito</h2>
-      </ion-label>
-      <ion-label slot="end">
-        <p>$120 MXN</p>
-      </ion-label>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-button fill="clear" color="primary" id="open-modal-edit"
-        >EDITAR</ion-button
-      >
-      <ion-button fill="clear" color="danger" (click)="presentDeleteAlert()">REMOVER</ion-button>
-    </ion-item>
-  </ion-card>
+    <ion-card>
+      <ion-item lines="full">
+        <ion-thumbnail slot="start">
+          <img
+            alt="Silhouette of mountains"
+            src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+          />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>Mojito</h2>
+        </ion-label>
+        <ion-label slot="end">
+          <p>$120 MXN</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-button fill="clear" color="primary" id="open-modal-edit"
+          >EDITAR</ion-button
+        >
+        <ion-button fill="clear" color="danger" (click)="presentDeleteAlert()">REMOVER</ion-button>
+      </ion-item>
+    </ion-card>
 
-  <ion-modal
-    trigger="open-modal-edit"
-    initialBreakpoint="1"
-    breakpoints="[0, 1]"
-    backdropDismiss="false"
-  >
-    <ng-template>
-      <div class="block ion-padding">
-        <form>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <h1 style="margin-bottom: 0">Editar Bebida</h1>
-                <p style="margin-top: 3px">Modificación</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12">
-                <ion-label position="stacked" class="input-label"
-                  >Nombre</ion-label
-                >
-              </ion-col>
-              <ion-col size="12">
-                <ion-input type="text" fill="outline"></ion-input>
-              </ion-col>
-              <ion-col size="12">
-                <ion-label position="stacked" class="input-label"
-                  >Precio</ion-label
-                >
-              </ion-col>
-              <ion-col size="12">
-                <ion-input type="number" fill="outline"></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row style="margin-top: 10px;">
-              <ion-col size="12">
-                <ion-button expand="block" class="btn-save">Guardar</ion-button>
-              </ion-col>
-              <ion-col size="12">
-                <ion-button expand="block" fill="outline" class="btn-cancel" (click)="dismissModal()">Cancelar</ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </form>
-      </div>
-    </ng-template>
-  </ion-modal>
+    <ion-modal
+      trigger="open-modal-edit"
+      initialBreakpoint="1"
+      breakpoints="[0, 1]"
+      backdropDismiss="false"
+    >
+      <ng-template>
+        <div class="block ion-padding">
+          <form>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <h1 style="margin-bottom: 0">Editar Bebida</h1>
+                  <p style="margin-top: 3px">Modificación</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label position="stacked" class="input-label"
+                    >Nombre</ion-label
+                  >
+                </ion-col>
+                <ion-col size="12">
+                  <ion-input type="text" fill="outline"></ion-input>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-label position="stacked" class="input-label"
+                    >Precio</ion-label
+                  >
+                </ion-col>
+                <ion-col size="12">
+                  <ion-input type="number" fill="outline"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 10px;">
+                <ion-col size="12">
+                  <ion-button expand="block" class="btn-save">Guardar</ion-button>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-button expand="block" fill="outline" class="btn-cancel" (click)="dismissModal()">Cancelar</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+        </div>
+      </ng-template>
+    </ion-modal>
 
-  <ion-modal
+    <ion-modal
     trigger="open-modal-add"
     initialBreakpoint="1"
     breakpoints="[0, 1]"
     backdropDismiss="false"
 
-  >
-    <ng-template>
-      <div class="block ion-padding">
-        <form>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <h1 style="margin-bottom: 0">Agregar Bebida</h1>
-                <p style="margin-top: 3px">Adición</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12">
-                <ion-label position="stacked" class="input-label"
-                  >Nombre</ion-label
-                >
-              </ion-col>
-              <ion-col size="12">
-                <ion-input type="text" fill="outline"></ion-input>
-              </ion-col>
-              <ion-col size="12">
-                <ion-label position="stacked" class="input-label"
-                  >Precio</ion-label
-                >
-              </ion-col>
-              <ion-col size="12">
-                <ion-input type="number" fill="outline"></ion-input>
-              </ion-col>
-              <ion-col size="12">
-                <ion-label position="stacked" class="input-label"
-                  >Url imagen</ion-label
-                >
-              </ion-col>
-              <ion-col size="12">
-                <ion-input type="url" fill="outline"></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row style="margin-top: 10px;">
-              <ion-col size="12">
-                <ion-button expand="block" class="btn-save">Guardar</ion-button>
-              </ion-col>
-              <ion-col size="12">
-                <ion-button expand="block" fill="outline" class="btn-cancel" (click)="dismissModal()">Cancelar</ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </form>
-      </div>
-    </ng-template>
-  </ion-modal>
-</ion-content>
+    >
+      <ng-template>
+        <div class="block ion-padding">
+          <form>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <h1 style="margin-bottom: 0">Agregar Bebida</h1>
+                  <p style="margin-top: 3px">Adición</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label position="stacked" class="input-label"
+                    >Nombre</ion-label
+                  >
+                </ion-col>
+                <ion-col size="12">
+                  <ion-input type="text" fill="outline"></ion-input>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-label position="stacked" class="input-label"
+                    >Precio</ion-label
+                  >
+                </ion-col>
+                <ion-col size="12">
+                  <ion-input type="number" fill="outline"></ion-input>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-label position="stacked" class="input-label"
+                    >Url imagen</ion-label
+                  >
+                </ion-col>
+                <ion-col size="12">
+                  <ion-input type="url" fill="outline"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 10px;">
+                <ion-col size="12">
+                  <ion-button expand="block" class="btn-save">Guardar</ion-button>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-button expand="block" fill="outline" class="btn-cancel" (click)="dismissModal()">Cancelar</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+        </div>
+      </ng-template>
+    </ion-modal>
+  </ion-content>

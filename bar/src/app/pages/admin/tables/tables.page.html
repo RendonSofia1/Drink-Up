@@ -1,9 +1,217 @@
 <app-toolbar title="Mesas"></app-toolbar>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tables</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-searchbar
+    [debounce]="1000"
+    show-clear-button="focus"
+    placeholder="Busca una bebida"
+    class="ion-padding"
+  ></ion-searchbar>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button id="open-modal-add">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list lines="full" inset="true">
+    <ion-item>
+      <div slot="start">
+        <ion-label>
+          <h2>Mesa 1</h2>
+          <p>Mesero: persona 1</p>
+        </ion-label>
+      </div>
+      <div slot="end">
+        <ion-button fill="clear" color="danger" (click)="presentDeleteAlert()">
+          <ion-icon name="trash"> </ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="primary" id="open-modal-edit">
+          <ion-icon name="pencil" color="warning"> </ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div slot="start">
+        <ion-label>
+          <h2>Mesa 1</h2>
+          <p>Mesero: persona 1</p>
+        </ion-label>
+      </div>
+      <div slot="end">
+        <ion-button fill="clear" color="danger" (click)="presentDeleteAlert()">
+          <ion-icon name="trash"> </ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="primary" id="open-modal-edit">
+          <ion-icon name="pencil" color="warning"> </ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div slot="start">
+        <ion-label>
+          <h2>Mesa 1</h2>
+          <p>Mesero: persona 1</p>
+        </ion-label>
+      </div>
+      <div slot="end">
+        <ion-button fill="clear" color="danger" (click)="presentDeleteAlert()">
+          <ion-icon name="trash"> </ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="primary" id="open-modal-edit">
+          <ion-icon name="pencil" color="warning"> </ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-modal
+    trigger="open-modal-edit"
+    initialBreakpoint="1"
+    breakpoints="[0, 1]"
+    backdropDismiss="false"
+  >
+    <ng-template>
+      <div class="block ion-padding">
+        <form>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h1 style="margin-bottom: 0">Editar Mesa</h1>
+                <p style="margin-top: 3px">Modificación</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-label position="stacked" class="input-label"
+                  >Nombre</ion-label
+                >
+              </ion-col>
+              <ion-col size="12">
+                <ion-input type="text" fill="outline"></ion-input>
+              </ion-col>
+              <ion-col size="12">
+                <ion-label position="stacked" class="input-label"
+                  >Mesero</ion-label
+                >
+              </ion-col>
+              <ion-col size="12">
+                <ion-list inset="false">
+                  <ion-item>
+                    <ion-select
+                      aria-label="Fruit"
+                      fill="outline"
+                      interface="popover"
+                      placeholder="Persona 1"
+                    >
+                      <ion-select-option value="apples"
+                        >
+                        Apples
+                        </ion-select-option
+                      >
+                      <ion-select-option value="oranges"
+                        >Oranges</ion-select-option
+                      >
+                      <ion-select-option value="bananas"
+                        >Bananas</ion-select-option
+                      >
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+            <ion-row style="margin-top: 10px">
+              <ion-col size="12">
+                <ion-button expand="block" class="btn-save">Guardar</ion-button>
+              </ion-col>
+              <ion-col size="12">
+                <ion-button
+                  expand="block"
+                  fill="outline"
+                  class="btn-cancel"
+                  (click)="dismissModal()"
+                  >Cancelar</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal
+    trigger="open-modal-add"
+    initialBreakpoint="1"
+    breakpoints="[0, 1]"
+    backdropDismiss="false"
+  >
+    <ng-template>
+      <div class="block ion-padding">
+        <form>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h1 style="margin-bottom: 0">Agregar Mesa</h1>
+                <p style="margin-top: 3px">Adición</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-label position="stacked" class="input-label"
+                  >Nombre</ion-label
+                >
+              </ion-col>
+              <ion-col size="12">
+                <ion-input type="text" fill="outline"></ion-input>
+              </ion-col>
+              <ion-col size="12">
+                <ion-label position="stacked" class="input-label"
+                  >Mesero</ion-label
+                >
+              </ion-col>
+              <ion-col size="12">
+                <ion-list inset="false">
+                  <ion-item>
+                    <ion-select
+                      aria-label="Fruit"
+                      fill="outline"
+                      interface="popover"
+                      placeholder="Persona 1"
+                    >
+                      <ion-select-option value="apples"
+                        >
+                        Apples
+                        </ion-select-option
+                      >
+                      <ion-select-option value="oranges"
+                        >Oranges</ion-select-option
+                      >
+                      <ion-select-option value="bananas"
+                        >Bananas</ion-select-option
+                      >
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+            <ion-row style="margin-top: 10px">
+              <ion-col size="12">
+                <ion-button expand="block" class="btn-save">Guardar</ion-button>
+              </ion-col>
+              <ion-col size="12">
+                <ion-button
+                  expand="block"
+                  fill="outline"
+                  class="btn-cancel"
+                  (click)="dismissModal()"
+                  >Cancelar</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+      </div>
+    </ng-template>
+  </ion-modal>
 </ion-content>
