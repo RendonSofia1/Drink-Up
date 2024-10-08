@@ -24,6 +24,7 @@ import {
   IonRow,
   IonCol,
   ModalController,
+  AlertController,
 } from '@ionic/angular/standalone';
 import { ToolbarComponent } from '../../../components/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
@@ -62,14 +63,41 @@ import { add } from 'ionicons/icons';
   ],
 })
 export class DrinksPage implements OnInit {
-
-
-  constructor(private modalController: ModalController) {
+  constructor(
+    private modalController: ModalController,
+    private alertController: AlertController
+  ) {
     addIcons({ add });
   }
 
   dismissModal() {
     this.modalController.dismiss();
+  }
+
+  async presentDeleteAlert() {
+    const alert = await this.alertController.create({
+      header: '¿Está seguro?',
+      message: 'Esta bebida se eliminará del menú',
+      buttons: [
+        {
+          text: 'CANCELAR',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          },
+        },
+        {
+          text: 'ELIMINAR',
+          role: 'destructive',
+          cssClass: 'danger',
+          handler: () => {
+            console.log('Remove clicked');
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
 
