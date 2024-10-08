@@ -5,13 +5,13 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { ToolbarComponent } from "../../../components/toolbar/toolbar.component";
 
 @Component({
-  selector: 'app-drinks',
-  templateUrl: './drinks.page.html',
-  styleUrls: ['./drinks.page.scss'],
+  selector: 'app-employees',
+  templateUrl: './employees.page.html',
+  styleUrls: ['./employees.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ToolbarComponent]
 })
-export class DrinksPage implements OnInit {
+export class EmployeesPage implements OnInit {
 
   constructor() { }
 

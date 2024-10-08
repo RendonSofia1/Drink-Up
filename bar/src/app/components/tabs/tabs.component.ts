@@ -7,7 +7,7 @@ import {
   IonTabs,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { cart, personCircle, receiptOutline, wineSharp } from 'ionicons/icons';
+import { cart, peopleCircleOutline, personCircle, receiptOutline, restaurant, wineSharp } from 'ionicons/icons';
 
 interface Tab {
   tab: string;
@@ -35,7 +35,7 @@ export class TabsComponent implements OnInit {
   tabs: Tab[] = [];
 
   constructor() {
-    addIcons({ wineSharp, cart, receiptOutline, personCircle });
+    addIcons({ wineSharp, cart, receiptOutline, personCircle, restaurant, peopleCircleOutline });
     this.userType = 'administrador';
     this.setTabs();
   }
@@ -87,6 +87,18 @@ export class TabsComponent implements OnInit {
           icon: 'wine-sharp',
           label: 'Drinks',
           route: '/tabs/drinks',
+        },
+        {
+          tab: 'tables',
+          icon: 'restaurant',
+          label: 'Mesas',
+          route: '/tabs/tables',
+        },
+        {
+          tab: 'employees',
+          icon: 'people-circle-outline',
+          label: 'Empleados',
+          route: '/tabs/employees',
         },
         {
           tab: 'cuenta',
