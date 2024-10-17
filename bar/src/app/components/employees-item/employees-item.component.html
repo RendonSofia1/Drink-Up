@@ -1,0 +1,17 @@
+<ion-item>
+  <div slot="start">
+    <ion-label>
+      <h2>Persona 1</h2>
+      <p>ID: 1234</p>
+      <p>Mesero</p>
+    </ion-label>
+  </div>
+  <div slot="end">
+    <ion-button fill="clear" color="danger" (click)="presentDeleteAlert()">
+      <ion-icon name="trash"> </ion-icon>
+    </ion-button>
+    <ion-button fill="clear" color="primary" (click)="openModal('edit')">
+      <ion-icon name="pencil" color="warning"></ion-icon>
+    </ion-button>
+  </div>
+</ion-item>
