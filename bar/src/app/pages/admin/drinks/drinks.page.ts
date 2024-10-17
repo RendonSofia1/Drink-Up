@@ -89,7 +89,7 @@ export class DrinksPage implements OnInit {
         {
           text: 'ELIMINAR',
           role: 'destructive',
-          cssClass: 'danger',
+          cssClass: 'danger-button',
           handler: () => {
             console.log('Remove clicked');
           },

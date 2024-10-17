@@ -56,7 +56,7 @@ export class CuentaPage implements OnInit {
       ],
       buttons: [
         {
-          cssClass: 'warning',
+          cssClass: 'danger-button',
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {

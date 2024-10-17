@@ -42,6 +42,7 @@ export class CheckoutPage implements OnInit {
         {
           text: 'Cancelar',
           role: 'cancel',
+          cssClass: 'danger-button',
           handler: () => {
             console.log('Cancelado');
           }
