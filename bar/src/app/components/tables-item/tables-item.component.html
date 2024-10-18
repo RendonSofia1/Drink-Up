@@ -1,0 +1,16 @@
+<ion-item>
+  <div slot="start">
+    <ion-label>
+      <h2>Mesa 1</h2>
+      <p>Mesero: persona 1</p>
+    </ion-label>
+  </div>
+  <div slot="end">
+    <ion-button fill="clear" color="danger" (click)="presentDeleteAlert()">
+      <ion-icon name="trash"> </ion-icon>
+    </ion-button>
+    <ion-button fill="clear" color="primary" (click)="openModal('edit')">
+      <ion-icon name="pencil" color="warning"> </ion-icon>
+    </ion-button>
+  </div>
+</ion-item>

@@ -1,24 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, AlertController, IonItem, IonLabel, IonButton, IonIcon } from "@ionic/angular/standalone";
-import { EmployeesModalComponent } from '../employees-modal/employees-modal.component';
+import { IonLabel, IonItem, IonButton, IonIcon, ModalController, AlertController } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { add, pencil, personOutline, trash } from 'ionicons/icons';
+import { TablesModalComponent } from '../tables-modal/tables-modal.component';
 
 @Component({
-  selector: 'app-employees-item',
+  selector: 'app-tables-item',
   standalone: true,
-  templateUrl: './employees-item.component.html',
-  styleUrls: ['./employees-item.component.scss'],
-  imports: [IonIcon, IonButton, IonLabel, IonItem,]
+  templateUrl: './tables-item.component.html',
+  styleUrls: ['./tables-item.component.scss'],
+  imports: [IonIcon, IonButton, IonItem, IonLabel, ]
 })
-export class EmployeesItemComponent implements OnInit {
+export class TablesItemComponent  implements OnInit {
 
   constructor(
     private modalController: ModalController,
     private alertController: AlertController
-  ) { }
+  ) { 
+    addIcons({add,trash,pencil, personOutline});
+
+  }
 
   async openModal(actionType: 'add' | 'edit') {
     const modal = await this.modalController.create({
-      component: EmployeesModalComponent,
+      component: TablesModalComponent,
       componentProps: { modalType: actionType },
       initialBreakpoint: 0.5, 
       breakpoints: [0, 1],
@@ -27,11 +32,11 @@ export class EmployeesItemComponent implements OnInit {
     });
     await modal.present();
   }
-  
+
   async presentDeleteAlert() {
     const alert = await this.alertController.create({
       header: '¿Está seguro?',
-      message: 'Esta empleado se eliminará de la base de datos',
+      message: 'Esta mesa se eliminará de la base de datos',
       buttons: [
         {
           text: 'CANCELAR',
@@ -54,6 +59,6 @@ export class EmployeesItemComponent implements OnInit {
     await alert.present();
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
 }

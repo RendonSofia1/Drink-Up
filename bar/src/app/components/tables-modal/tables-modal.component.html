@@ -1,0 +1,49 @@
+<div class="block ion-padding">
+  <form>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1 style="margin-bottom: 0">{{ modalType === 'edit' ? 'Editar Mesa' : 'Agregar Mesa' }}</h1>
+          <p style="margin-top: 3px">{{ modalType === 'edit' ? 'Modificación de mesa' : 'Agregar mesa' }}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label position="stacked" class="input-label">Nombre</ion-label>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input type="text" fill="outline" [(ngModel)]="tableData.name" name="name" required></ion-input>
+        </ion-col>
+        <ion-col size="12">
+          <ion-label position="stacked" class="input-label">Mesero</ion-label>
+        </ion-col>
+        <ion-col size="12">
+          <ion-list inset="false">
+            <ion-item>
+              <ion-select 
+                aria-label="Mesero" 
+                fill="outline" 
+                interface="popover" 
+                placeholder="Selecciona un mesero" 
+                [(ngModel)]="tableData.waiter" 
+                name="waiter" 
+                required>
+                <ion-select-option value="apples">Apples</ion-select-option>
+                <ion-select-option value="oranges">Oranges</ion-select-option>
+                <ion-select-option value="bananas">Bananas</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 10px">
+        <ion-col size="12">
+          <ion-button expand="block" class="btn-save" (click)="save()">Guardar</ion-button>
+        </ion-col>
+        <ion-col size="12">
+          <ion-button expand="block" fill="outline" class="btn-cancel" (click)="dismissModal()">Cancelar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</div>

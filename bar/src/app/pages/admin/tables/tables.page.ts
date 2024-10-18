@@ -28,6 +28,8 @@ import {
 import { ToolbarComponent } from '../../../components/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { add, pencil, trash, person, personOutline } from 'ionicons/icons';
+import { TablesItemComponent } from "../../../components/tables-item/tables-item.component";
+import { TablesModalComponent } from '../../../components/tables-modal/tables-modal.component';
 
 @Component({
   selector: 'app-tables',
@@ -57,8 +59,9 @@ import { add, pencil, trash, person, personOutline } from 'ionicons/icons';
     FormsModule,
     ToolbarComponent,
     IonSelect,
-    IonSelectOption
-  ],
+    IonSelectOption,
+    TablesItemComponent
+],
 })
 export class TablesPage implements OnInit {
   constructor(
@@ -67,9 +70,16 @@ export class TablesPage implements OnInit {
   ) {
     addIcons({add,trash,pencil, personOutline});
   }
-
-  dismissModal() {
-    this.modalController.dismiss();
+  async openModal(actionType: 'add' | 'edit') {
+    const modal = await this.modalController.create({
+      component: TablesModalComponent,
+      componentProps: { modalType: actionType },
+      initialBreakpoint: 0.5, 
+      breakpoints: [0, 1],
+      backdropDismiss: false 
+    
+    });
+    await modal.present();
   }
 
   async presentDeleteAlert() {

@@ -24,7 +24,7 @@ export class EmployeesPage implements OnInit {
   async openModal(actionType: 'add' | 'edit') {
     const modal = await this.modalController.create({
       component: EmployeesModalComponent,
-      componentProps: { actionType },
+      componentProps: { modalType: actionType },
       initialBreakpoint: 0.5, 
       breakpoints: [0, 1],
       backdropDismiss: false 
