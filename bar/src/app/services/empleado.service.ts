@@ -8,7 +8,6 @@ const API = 'http://localhost:3002/api/v1';
 export class EmpleadoService {
 
   getNewEmployee: EventEmitter<any> = new EventEmitter();
-  private tk: string | null = localStorage.getItem('token');
 
   constructor(private _http: HttpClient) { }
 
@@ -20,8 +19,8 @@ export class EmpleadoService {
     return this._http.post(`${API}/usuarios`, body);
   }
 
-  setNewEmpleado(empleado: any) {
-    this.getNewEmployee.emit({ action: 'add', empleado });
+  setNewEmpleado(object: any) {
+    this.getNewEmployee.emit({ action: 'add', object });
   }
 
   setEmpleadoEliminado(id: number) {
