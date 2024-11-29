@@ -4,19 +4,19 @@
   <ion-searchbar
     [debounce]="1000"
     show-clear-button="focus"
-    placeholder="Busca una bebida"
+    placeholder="Busca un usuario"
     class="ion-padding"
   ></ion-searchbar>
 
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button (click)="openModal('add')">
+    <ion-fab-button (click)="openModalAdd()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-list lines="full" inset="true">
-    @for (item of [1,1,1]; track $index) {
-      <app-employees-item></app-employees-item>
+    @for (item of listaEmpleados; track $index) {
+      <app-employees-item [empleado]="item"></app-employees-item>
     }
   </ion-list>
 </ion-content>

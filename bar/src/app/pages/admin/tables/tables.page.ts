@@ -3,27 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonInput,
   IonFabButton,
   IonSearchbar,
   IonFab,
   IonIcon,
-  IonLabel,
-  IonItem,
-  IonButton,
-  IonModal,
-  IonGrid,
-  IonRow,
-  IonCol,
   ModalController,
   AlertController,
-  IonCard,
   IonList,
-  IonSelect,
-  IonSelectOption,
 } from '@ionic/angular/standalone';
 import { ToolbarComponent } from '../../../components/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
@@ -38,28 +24,14 @@ import { TablesModalComponent } from '../../../components/tables-modal/tables-mo
   standalone: true,
   imports: [
     IonList,
-    IonCard,
-    IonCol,
-    IonRow,
-    IonGrid,
-    IonModal,
-    IonButton,
-    IonItem,
-    IonLabel,
     IonIcon,
     IonFab,
     IonSearchbar,
     IonFabButton,
-    IonInput,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     ToolbarComponent,
-    IonSelect,
-    IonSelectOption,
     TablesItemComponent
 ],
 })
@@ -74,10 +46,10 @@ export class TablesPage implements OnInit {
     const modal = await this.modalController.create({
       component: TablesModalComponent,
       componentProps: { modalType: actionType },
-      initialBreakpoint: 0.5, 
+      initialBreakpoint: 0.5,
       breakpoints: [0, 1],
-      backdropDismiss: false 
-    
+      backdropDismiss: false
+
     });
     await modal.present();
   }
