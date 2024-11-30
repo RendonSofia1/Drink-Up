@@ -5,7 +5,7 @@ const API = 'http://localhost:3002/api/v1';
 @Injectable({
   providedIn: 'root'
 })
-export class MesasService {
+export class MesaService {
   getNewMesa: EventEmitter<any> = new EventEmitter();
 
   constructor(private _http: HttpClient) { }
