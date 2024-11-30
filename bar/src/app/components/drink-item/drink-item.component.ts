@@ -30,10 +30,10 @@ export class DrinkItemComponent implements OnInit {
     private _bebidasSev: BebidaService
   ) {}
 
-  async openModalEdit(objecto:any) {
+  async openModalEdit(objeto:any) {
     const modal = await this.modalController.create({
       component: DrinkModalComponent,
-      componentProps: { modalType: 'edit',  bebidaEdit: objecto },
+      componentProps: { modalType: 'edit',  bebidaEdit: objeto },
       initialBreakpoint: 0.6,
       backdropDismiss: false
 
@@ -60,7 +60,7 @@ export class DrinkItemComponent implements OnInit {
           handler: async () => {
             console.log('Remove clicked');
             try {
-              const resp = await this._bebidasSev.deleteBebida(id).toPromise();
+              const resp = await this._bebidasSev.deleteBebida(id);
               console.log(resp);
               this._bebidasSev.setBebidaEliminado(id);
               await this.toast.showToast('Bebida eliminada exitosamente');

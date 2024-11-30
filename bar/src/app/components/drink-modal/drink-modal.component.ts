@@ -50,12 +50,12 @@ export class DrinkModalComponent implements OnInit {
             next: async (resp) => {
               console.log(resp);
               this._drinkServ.setNewBebida(resp);
-              await this.toast.showToast('Bebida actualizado exitosamente');
+              await this.toast.showToast('Bebida actualizada exitosamente');
               this.dismissModal();
             },
             error: async (err) => {
               console.error(err);
-              await this.toast.showToast('Error al actualizar el Bebida');
+              await this.toast.showToast('Error al actualizar la Bebida');
             },
           });
       } else {
@@ -64,12 +64,12 @@ export class DrinkModalComponent implements OnInit {
           next: async (resp) => {
             console.log(resp);
             this._drinkServ.setNewBebida(resp);
-            await this.toast.showToast('Bebida guardado exitosamente');
+            await this.toast.showToast('Bebida guardada exitosamente');
             this.dismissModal();
           },
           error: async (err) => {
             console.error(err);
-            await this.toast.showToast('Error al guardar el Bebida');
+            await this.toast.showToast('Error al guardar la Bebida');
           },
         });
       }

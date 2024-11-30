@@ -54,7 +54,7 @@ export class EmployeesItemComponent implements OnInit {
           handler: async () => {
             console.log('Remove clicked');
             try {
-              const resp = await this._empleadoServ.deleteEmpleado(idUsuario).toPromise(); // Convertimos el observable a una promesa
+              const resp = await this._empleadoServ.deleteEmpleado(idUsuario);
               console.log(resp);
               this._empleadoServ.setEmpleadoEliminado(idUsuario);
               await this.toast.showToast('Empleado eliminado exitosamente');

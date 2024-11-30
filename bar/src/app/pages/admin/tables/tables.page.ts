@@ -16,6 +16,7 @@ import { addIcons } from 'ionicons';
 import { add, pencil, trash, person, personOutline } from 'ionicons/icons';
 import { TablesItemComponent } from "../../../components/tables-item/tables-item.component";
 import { TablesModalComponent } from '../../../components/tables-modal/tables-modal.component';
+import { MesaService } from 'src/app/services/mesa.service';
 
 @Component({
   selector: 'app-tables',
@@ -36,48 +37,38 @@ import { TablesModalComponent } from '../../../components/tables-modal/tables-mo
 ],
 })
 export class TablesPage implements OnInit {
+  listaMesas: any[] = [];
   constructor(
     private modalController: ModalController,
-    private alertController: AlertController
+    private _mesasServ: MesaService,
   ) {
     addIcons({add,trash,pencil, personOutline});
+    this._mesasServ.getNewMesa.subscribe((event: any) => {
+      if (event.action === 'delete') {
+        this.listaMesas = this.listaMesas.filter(emp => emp.idMesa !== event.id);
+      }
+      if (event.action === 'add' || event.action === 'update') {
+        this.obtenerMesas();
+      }
+    });
+    this.obtenerMesas();
   }
-  async openModal(actionType: 'add' | 'edit') {
+  async openModalAdd() {
     const modal = await this.modalController.create({
       component: TablesModalComponent,
-      componentProps: { modalType: actionType },
-      initialBreakpoint: 0.5,
-      breakpoints: [0, 1],
-      backdropDismiss: false
-
+      componentProps: { modalType: 'add' },
+      initialBreakpoint: 0.6,
+      // breakpoints: [0, 1],
+      backdropDismiss: false,
     });
     await modal.present();
   }
 
-  async presentDeleteAlert() {
-    const alert = await this.alertController.create({
-      header: '¿Está seguro?',
-      message: 'Esta mesa se eliminará de la base de datos',
-      buttons: [
-        {
-          text: 'CANCELAR',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          },
-        },
-        {
-          text: 'ELIMINAR',
-          role: 'destructive',
-          cssClass: 'danger-button',
-          handler: () => {
-            console.log('Remove clicked');
-          },
-        },
-      ],
+  obtenerMesas(){
+    this._mesasServ.getMesas().subscribe((data: any) => {
+      this.listaMesas = data.mesas;
+      console.log(this.listaMesas);
     });
-
-    await alert.present();
   }
 
   ngOnInit() {}

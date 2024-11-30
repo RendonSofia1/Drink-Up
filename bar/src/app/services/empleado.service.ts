@@ -34,4 +34,8 @@ export class EmpleadoService {
   updateEmpleado(body:any, id:number){
     return this._http.patch(`${API}/usuarios/${id}`, body);
   }
+
+  getEmpleadosByRol(rol: number){
+    return this._http.get(`${API}/usuarios/rol/${rol}`);
+  }
 }

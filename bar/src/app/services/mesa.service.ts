@@ -19,18 +19,18 @@ export class MesaService {
   }
 
   updateMesa(id:any, body:any){
-    return this._http.put(`${API}/mesas/${id}`, body);
+    return this._http.patch(`${API}/mesas/${id}`, body);
   }
 
   deleteMesa(id:any){
     return this._http.delete(`${API}/mesas/${id}`);
   }
 
-  emitNewEmpleado(object: any) {
+  emitNewMesa(object: any) {
     this.getNewMesa.emit({ action: 'add', object });
   }
 
-  emitEmpleadoEliminado(id: number) {
+  emitMesaEliminado(id: number) {
     this.getNewMesa.emit({ action: 'delete', id });
   }
 

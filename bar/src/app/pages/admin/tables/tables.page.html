@@ -9,14 +9,14 @@
   ></ion-searchbar>
 
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button (click)="openModal('add')">
+    <ion-fab-button (click)="openModalAdd()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-list lines="full" inset="true">
-    @for (item of [1,1,1]; track $index) {
-      <app-tables-item></app-tables-item>
+    @for (item of listaMesas; track $index) {
+      <app-tables-item [table]= "item" ></app-tables-item>
     }
   </ion-list>
 
