@@ -18,7 +18,7 @@ export class EmployeesItemComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private alertController: AlertController,
-    private empleadoServ: EmpleadoService,
+    private _empleadoServ: EmpleadoService,
   ) {
 
   }
@@ -26,7 +26,7 @@ export class EmployeesItemComponent implements OnInit {
   async openModalEdit(empleado:any) {
     const modal = await this.modalController.create({
       component: EmployeesModalComponent,
-      componentProps: { modalType: 'edit',  modalEmpleado: empleado },
+      componentProps: { modalType: 'edit',  empleadoEdit: empleado },
       initialBreakpoint: 0.85,
       // breakpoints: [0, 1],
       backdropDismiss: false
@@ -54,9 +54,9 @@ export class EmployeesItemComponent implements OnInit {
           handler: async () => {
             console.log('Remove clicked');
             try {
-              const resp = await this.empleadoServ.deleteEmpleado(idUsuario).toPromise(); // Convertimos el observable a una promesa
+              const resp = await this._empleadoServ.deleteEmpleado(idUsuario).toPromise(); // Convertimos el observable a una promesa
               console.log(resp);
-              this.empleadoServ.setEmpleadoEliminado(idUsuario);
+              this._empleadoServ.setEmpleadoEliminado(idUsuario);
               await this.toast.showToast('Empleado eliminado exitosamente');
             } catch (err) {
               console.error('Error al eliminar el empleado:', err);

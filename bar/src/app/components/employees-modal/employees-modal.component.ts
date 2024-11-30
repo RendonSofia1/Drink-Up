@@ -42,7 +42,7 @@ import { ToastComponent } from '../toast/toast.component';
 })
 export class EmployeesModalComponent implements OnInit {
   @Input() modalType!: 'add' | 'edit';
-  @Input() modalEmpleado!: any;
+  @Input() empleadoEdit!: any;
   private fb = inject(FormBuilder);
   nForm!: FormGroup;
   private toast = inject(ToastComponent);
@@ -76,7 +76,7 @@ export class EmployeesModalComponent implements OnInit {
       if (this.modalType === 'edit') {
         // Lógica para actualizar al empleado
         this._empleadoServ
-          .updateEmpleado(this.nForm.value, this.modalEmpleado.idUsuario)
+          .updateEmpleado(this.nForm.value, this.empleadoEdit.idUsuario)
           .subscribe({
             next: async (resp) => {
               console.log(resp);
@@ -111,15 +111,13 @@ export class EmployeesModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.modalType === 'edit' && this.modalEmpleado) {
-      this.nForm.get('contrasena')?.clearValidators();
-      this.nForm.get('contrasena')?.updateValueAndValidity();
-      // Rellenar el formulario con los datos del empleado
+    if (this.modalType === 'edit' && this.empleadoEdit) {
       this.nForm.patchValue({
-        nombreUsuario: this.modalEmpleado.nombreUsuario,
-        apellidoPat: this.modalEmpleado.apellidoPat,
-        apellidoMat: this.modalEmpleado.apellidoMat,
-        rol: this.modalEmpleado.rol,
+        nombreUsuario: this.empleadoEdit.nombreUsuario,
+        apellidoPat: this.empleadoEdit.apellidoPat,
+        apellidoMat: this.empleadoEdit.apellidoMat,
+        contrasena: this.empleadoEdit.contrasena,
+        rol: this.empleadoEdit.rol,
       });
     }
   }

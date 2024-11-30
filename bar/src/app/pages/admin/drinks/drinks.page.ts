@@ -3,32 +3,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
   IonSearchbar,
-  IonCard,
-  IonAvatar,
-  IonItem,
-  IonButton,
-  IonLabel,
-  IonThumbnail,
   IonFab,
   IonFabButton,
   IonIcon,
-  IonModal,
-  IonInput,
-  IonButtons,
-  IonText,
-  IonGrid,
-  IonRow,
-  IonCol,
   ModalController,
   AlertController,
 } from '@ionic/angular/standalone';
 import { ToolbarComponent } from '../../../components/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
+import { DrinkModalComponent } from 'src/app/components/drink-modal/drink-modal.component';
+import { BebidaService } from 'src/app/services/bebida.service';
+import { DrinkItemComponent } from 'src/app/components/drink-item/drink-item.component';
 
 @Component({
   selector: 'app-drinks',
@@ -36,70 +23,59 @@ import { add } from 'ionicons/icons';
   styleUrls: ['./drinks.page.scss'],
   standalone: true,
   imports: [
-    IonCol,
-    IonRow,
-    IonGrid,
-    IonText,
-    IonButtons,
-    IonInput,
-    IonModal,
     IonIcon,
     IonFabButton,
     IonFab,
-    IonLabel,
-    IonButton,
-    IonItem,
-    IonAvatar,
-    IonCard,
     IonSearchbar,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     ToolbarComponent,
-    IonThumbnail,
+    DrinkItemComponent
   ],
 })
 export class DrinksPage implements OnInit {
+  listaBebidas: any[] = [];
   constructor(
     private modalController: ModalController,
-    private alertController: AlertController
+    private _drinkService:BebidaService,
   ) {
     addIcons({ add });
+    this._drinkService.getNewDrink.subscribe((event: any) => {
+      if (event.action === 'delete') {
+        this.listaBebidas = this.listaBebidas.filter(emp => emp.idBebida !== event.id);
+      }
+      if (event.action === 'add' || event.action === 'update') {
+        this.obtenerBebidas();
+      }
+    });
+    this.obtenerBebidas();
+
+  }
+
+  obtenerBebidas(){
+    this._drinkService.getBebidas().subscribe((data: any) => {
+      console.log(data);
+      this.listaBebidas = data.bebidas;
+      console.log(this.listaBebidas);
+    });
   }
 
   dismissModal() {
     this.modalController.dismiss();
   }
 
-  async presentDeleteAlert() {
-    const alert = await this.alertController.create({
-      header: '¿Está seguro?',
-      message: 'Esta bebida se eliminará del menú',
-      buttons: [
-        {
-          text: 'CANCELAR',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          },
-        },
-        {
-          text: 'ELIMINAR',
-          role: 'destructive',
-          cssClass: 'danger-button',
-          handler: () => {
-            console.log('Remove clicked');
-          },
-        },
-      ],
+
+  async openModalAdd() {
+    const modal = await this.modalController.create({
+      component: DrinkModalComponent,
+      componentProps: { modalType: 'add' },
+      initialBreakpoint: 0.6,
+      // breakpoints: [0, 1],
+      backdropDismiss: false,
     });
-
-    await alert.present();
+    await modal.present();
   }
-
 
   ngOnInit() {}
 }

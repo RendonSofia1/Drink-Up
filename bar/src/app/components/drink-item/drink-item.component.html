@@ -1,0 +1,22 @@
+<ion-card>
+  <ion-item lines="full">
+    <ion-thumbnail slot="start">
+      <img
+        alt="Silhouette of mountains"
+        src= {{drink.url}}
+      />
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{drink.nombreBebida}}</h2>
+    </ion-label>
+    <ion-label slot="end">
+      <p>{{drink.precioBebida | currency }} MXN</p>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-button fill="clear" color="primary" (click)="openModalEdit(drink)"
+      >EDITAR</ion-button
+    >
+    <ion-button fill="clear" color="danger" (click)="presentDeleteAlert(drink.idBebida)">REMOVER</ion-button>
+  </ion-item>
+</ion-card>
