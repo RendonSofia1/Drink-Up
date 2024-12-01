@@ -67,7 +67,7 @@ export class MenuPage implements OnInit {
       total: drink.precioBebida,
     };
     this._carritoService.agregarAlCarrito(producto);
-    await this.toast.showToast('Producto agregado al carrito', 1500 ,'medium');
+    await this.toast.showToast('Producto agregado al carrito','medium', 'top');
   }
 
   limpiarlocal(){

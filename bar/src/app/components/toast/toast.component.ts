@@ -12,11 +12,11 @@ export class ToastComponent  implements OnInit {
 
   constructor(private toastCtrl: ToastController) { }
 
-  async showToast(message: string, duracion: number = 2000, color: string = 'dark') {
+  async showToast(message: string, color: string = 'dark', position: 'top' | 'bottom' | 'middle' = 'middle') {
     const toast = await this.toastCtrl.create({
       message,
-      duration: duracion,
-      position: 'middle',
+      duration: 2000,
+      position: position,
       color:color,
     });
     toast.present();

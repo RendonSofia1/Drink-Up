@@ -14,6 +14,10 @@ export class MesaService {
     return this._http.get(`${API}/mesas`);
   }
 
+  getMesaById(id: number){
+    return this._http.get(`${API}/mesas/${id}`);
+  }
+
   newMesa(body:any){
     return this._http.post(`${API}/mesas`, body);
   }

@@ -60,7 +60,7 @@ export class EmployeesItemComponent implements OnInit {
               await this.toast.showToast('Empleado eliminado exitosamente');
             } catch (err) {
               console.error('Error al eliminar el empleado:', err);
-              await this.toast.showToast('Este empleado tiene mesas asignadas. Error al eliminar', 4000);
+              await this.toast.showToast('Error al eliminar');
             }
           },
         },

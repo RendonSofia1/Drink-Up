@@ -63,7 +63,7 @@ export class TablesItemComponent  implements OnInit {
               await this.toast.showToast('Mesa eliminada exitosamente');
             } catch (err) {
               console.error('Error al eliminar mesa:', err);
-              await this.toast.showToast('Error al eliminar', 4000);
+              await this.toast.showToast('Error al eliminar');
             }
           },
         },

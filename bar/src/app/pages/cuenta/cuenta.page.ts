@@ -10,8 +10,8 @@ import {
   IonCardSubtitle,
 } from '@ionic/angular/standalone';
 import { ToolbarComponent } from 'src/app/components/toolbar/toolbar.component';
-import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-cuenta',
@@ -31,42 +31,23 @@ import { Router } from '@angular/router';
   ],
 })
 export class CuentaPage implements OnInit {
-  constructor(private alertCtrl: AlertController, private _route:Router) {}
+  user: any;
+
+  constructor(
+    private route: Router,
+    private _loginService: LoginService
+  ) {
+    this.user = this._loginService.getUser();
+    console.log(this.user);
+  }
+
 
 
   cerrarSesion() {
-    this._route.navigate(['/home']);
+    this._loginService.logout();
+    this.route.navigate(['/home']);
   }
 
-  async showAlert() {
-    const alert = await this.alertCtrl.create({
-      header: 'Introduzca la clave',
-      inputs: [
-        {
-          name: 'clave',
-          type: 'password',
-          placeholder: 'Clave de seguridad',
-        },
-      ],
-      buttons: [
-        {
-          cssClass: 'danger-button',
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancelado');
-          },
-        },
-        {
-          text: 'Ok',
-          cssClass: 'tertiary',
-          handler: (data) => {
-            console.log('Aceptado', data);
-          },
-        },
-      ],
-    });
-    await alert.present();
-  }
+
   ngOnInit() {}
 }

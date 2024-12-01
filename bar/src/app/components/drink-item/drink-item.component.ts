@@ -66,7 +66,7 @@ export class DrinkItemComponent implements OnInit {
               await this.toast.showToast('Bebida eliminada exitosamente');
             } catch (err) {
               console.error('Error al eliminar bebida:', err);
-              await this.toast.showToast('Error al eliminar', 4000);
+              await this.toast.showToast('Error al eliminar');
             }
           },
         },

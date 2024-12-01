@@ -63,6 +63,11 @@ export const routes: Routes = [
             (m) => m.EmployeesPage
           ),
       },
+      {
+        path: 'mesa',
+        loadComponent: () =>
+          import('./pages/user/mesa/mesa.page').then((m) => m.MesaPage),
+      },
     ],
   },
   {

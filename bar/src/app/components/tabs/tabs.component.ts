@@ -7,7 +7,14 @@ import {
   IonTabs,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { cart, peopleCircleOutline, personCircle, receiptOutline, restaurant, wineSharp } from 'ionicons/icons';
+import {
+  cart,
+  peopleCircleOutline,
+  personCircle,
+  receiptOutline,
+  restaurant,
+  wineSharp,
+} from 'ionicons/icons';
 
 interface Tab {
   tab: string;
@@ -35,8 +42,22 @@ export class TabsComponent implements OnInit {
   tabs: Tab[] = [];
 
   constructor() {
-    addIcons({ wineSharp, cart, receiptOutline, personCircle, restaurant, peopleCircleOutline });
-    this.userType = 'mesa';
+    addIcons({
+      wineSharp,
+      cart,
+      receiptOutline,
+      personCircle,
+      restaurant,
+      peopleCircleOutline,
+    });
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const mesaUser = JSON.parse(localStorage.getItem('mesaUser') || '{}');
+    if (user && user.rol !== undefined) {
+      this.userType = this.getRoleName(user.rol); 
+    } else if (mesaUser) {
+      this.userType = 'mesa';
+    }
+
     this.setTabs();
   }
 
@@ -59,13 +80,13 @@ export class TabsComponent implements OnInit {
           route: '/tabs/checkout',
         },
         {
-          tab: 'cuenta',
+          tab: 'mesa',
           icon: 'person-circle',
-          label: 'Cuenta',
-          route: '/tabs/cuenta',
+          label: 'Mesa',
+          route: '/tabs/mesa',
         },
       ];
-    } else if (this.userType === 'mesero') {
+    } else if (this.userType === 'empleado') {
       this.tabs = [
         {
           tab: 'pedidos',
@@ -108,5 +129,11 @@ export class TabsComponent implements OnInit {
         },
       ];
     }
+  }
+
+  getRoleName(rol: number): string {
+    if (rol === 0)
+      return 'administrador';
+    return 'empleado';
   }
 }
