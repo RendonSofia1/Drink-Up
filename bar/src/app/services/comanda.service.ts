@@ -6,31 +6,34 @@ const API = 'http://localhost:3002/api/v1';
   providedIn: 'root'
 })
 export class ComandaService {
-  getNewComanda: EventEmitter<any> = new EventEmitter();
 
   constructor(private _http: HttpClient) { }
 
   getComandas(){
-    return this._http.get(`${API}/comandas`);
+    return this._http.get(`${API}/comanda`);
+  }
+
+  getComandasByMesa (id: number) {
+    return this._http.get(`${API}/comanda/mesa/${id}`);
+  }
+
+  getComandasByStatus (status: number) {
+    return this._http.get(`${API}/comanda/status/${status}`);
+  }
+
+  getComandasByUser (id: number, status: number) {
+    return this._http.get(`${API}/comanda/user/${id}/status/${status}`);
   }
 
   newComanda(body:any){
-    return this._http.post(`${API}/comandas`, body);
-  }
-
-  setNewComanda(object: any) {
-    this.getNewComanda.emit({ action: 'add', object });
-  }
-
-  setComandaEliminado(id: number) {
-    this.getNewComanda.emit({ action: 'delete', id });
+    return this._http.post(`${API}/comanda`, body);
   }
 
   deleteComanda(id:number){
-    return this._http.delete(`${API}/comandas/${id}`);
+    return this._http.delete(`${API}/comanda/${id}`);
   }
 
   updateComanda(body:any, id:number){
-    return this._http.patch(`${API}/comandas/${id}`, body);
+    return this._http.patch(`${API}/comanda/${id}`, body);
   }
 }

@@ -58,8 +58,10 @@ export class HomePage {
     this._loginService.login(this.nForm.value).subscribe(
       (resp: any) => {
         if (resp && resp.statusCode === 200) {
-          localStorage.setItem('user', JSON.stringify(resp.usuario));
-          this.router.navigate(['/tabs/cuenta']);
+          this._loginService.setUser(resp.usuario);
+          this.router.navigateByUrl('/tabs/cuenta', { skipLocationChange: true }).then(() => {
+            this.router.navigate([decodeURIComponent(this.router.url)]);
+          });
         }
       },
       (error: any) => {
@@ -78,8 +80,10 @@ export class HomePage {
     this._mesasService.getMesaById(this.mesaForm.value.idMesa).subscribe(
       (resp: any) => {
         if (resp && resp.statusCode === 200) {
-          localStorage.setItem('mesaUser', JSON.stringify(resp.mesa));
-          this.router.navigate(['/tabs/mesa']);
+          this._loginService.setMesaUser(resp.mesa);
+          this.router.navigateByUrl('/tabs/mesa', { skipLocationChange: true }).then(() => {
+            this.router.navigate([decodeURIComponent(this.router.url)]);
+          });
         }
       },
       (error: any) => {

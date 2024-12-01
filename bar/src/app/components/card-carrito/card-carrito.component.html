@@ -16,11 +16,9 @@
       <ion-item>
         <label class="labelCantidad">Cantidad</label>
         <ion-input
+          [readonly]="true"
           value="{{ producto.cantidad }}"
           type="number"
-          min="1"
-          max="100"
-          (ionChange)="actualizarCantidad(producto.id, producto.cantidad)"
           class="input-cantidad"
         ></ion-input>
       </ion-item>

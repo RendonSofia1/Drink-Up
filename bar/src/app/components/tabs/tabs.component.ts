@@ -15,6 +15,7 @@ import {
   restaurant,
   wineSharp,
 } from 'ionicons/icons';
+import { Subscription } from 'rxjs';
 
 interface Tab {
   tab: string;
@@ -41,6 +42,9 @@ export class TabsComponent implements OnInit {
   userType: string = '';
   tabs: Tab[] = [];
 
+  userSubscription: Subscription = Subscription.EMPTY;
+  mesaUserSubscription: Subscription = Subscription.EMPTY;
+
   constructor() {
     addIcons({
       wineSharp,
@@ -50,18 +54,19 @@ export class TabsComponent implements OnInit {
       restaurant,
       peopleCircleOutline,
     });
+
+  }
+  ngOnInit() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const mesaUser = JSON.parse(localStorage.getItem('mesaUser') || '{}');
     if (user && user.rol !== undefined) {
-      this.userType = this.getRoleName(user.rol); 
+      this.userType = this.getRoleName(user.rol);
     } else if (mesaUser) {
       this.userType = 'mesa';
     }
-
+    console.log(this.userType);
     this.setTabs();
   }
-
-  ngOnInit() {}
 
   setTabs() {
     if (this.userType === 'mesa') {
@@ -132,8 +137,8 @@ export class TabsComponent implements OnInit {
   }
 
   getRoleName(rol: number): string {
-    if (rol === 0)
-      return 'administrador';
-    return 'empleado';
+    if (rol === 1)
+      return 'empleado';
+    return 'administrador';
   }
 }

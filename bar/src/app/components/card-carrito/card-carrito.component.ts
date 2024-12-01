@@ -24,11 +24,10 @@ import { addOutline, removeOutline, trashBinOutline, trashOutline } from 'ionico
     IonThumbnail,
     IonLabel,
   ],
-  providers: [ToastComponent]
 })
 export class CardCarritoComponent implements OnInit {
   @Input() producto: any;
-  private toast = inject(ToastComponent);
+
   constructor(
     private _carritoService: CarritoService
   ) {
@@ -44,6 +43,6 @@ export class CardCarritoComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 }

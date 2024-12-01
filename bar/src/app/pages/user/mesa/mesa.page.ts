@@ -10,8 +10,9 @@ import {
   IonCard,
 } from '@ionic/angular/standalone';
 import { ToolbarComponent } from 'src/app/components/toolbar/toolbar.component';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-mesa',
@@ -31,20 +32,19 @@ import { Router } from '@angular/router';
   ],
 })
 export class MesaPage implements OnInit {
+  user: any;
 
-  user:any;
-
-  constructor(private alertCtrl: AlertController, private route: Router) {
+  constructor(
+    private alertCtrl: AlertController,
+    private route: Router,
+    private toast: ToastController,
+    private _carritoServ: CarritoService,
+  ) {
     this.user = JSON.parse(localStorage.getItem('mesaUser') || '{}');
     console.log(this.user);
   }
 
-  cerrarSesion() {
-    localStorage.removeItem('mesaUser');
-    this.route.navigate(['/home']);
-  }
-
-  async showAlert() {
+  async cerrarSesion() {
     const alert = await this.alertCtrl.create({
       header: 'Introduzca la clave',
       inputs: [
@@ -59,15 +59,25 @@ export class MesaPage implements OnInit {
           cssClass: 'danger-button',
           text: 'Cancelar',
           role: 'cancel',
-          handler: () => {
-            console.log('Cancelado');
-          },
         },
         {
           text: 'Ok',
           cssClass: 'tertiary',
           handler: (data) => {
-            console.log('Aceptado', data);
+            if (data.clave !== '1234') {
+              this.toast
+                .create({
+                  message: 'Clave incorrecta',
+                  duration: 2000,
+                  color: 'danger',
+                  position:'middle',
+                })
+                .then((t) => t.present());
+              return;
+            }
+            this._carritoServ.vaciarCarrito();
+            localStorage.removeItem('mesaUser');
+            this.route.navigate(['/home']);
           },
         },
       ],

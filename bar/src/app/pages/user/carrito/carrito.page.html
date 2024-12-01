@@ -7,8 +7,14 @@
   </ion-item>
 
   @for (item of listaProductos; track $index) {
-    <app-card-carrito [producto]="item" ></app-card-carrito>
+  <app-card-carrito [producto]="item"></app-card-carrito>
   }
 
-  <ion-button expand="block" color="primary">Pedir</ion-button>
+  <ion-button
+    expand="block"
+    color="primary"
+    [disabled]="listaProductos.length === 0"
+    (click)="hacerComanda()"
+    >Pedir</ion-button  
+  >
 </ion-content>
