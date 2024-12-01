@@ -3,13 +3,12 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-item>
     <ion-label>Total</ion-label>
-    <ion-label slot="end">{{200|currency}}</ion-label>
+    <ion-label slot="end">{{ totalCarrito |currency}}</ion-label>
   </ion-item>
-  <app-card-carrito></app-card-carrito>
-  <app-card-carrito></app-card-carrito>
-  <app-card-carrito></app-card-carrito>
-  <app-card-carrito></app-card-carrito>
-  <app-card-carrito></app-card-carrito>
+
+  @for (item of listaProductos; track $index) {
+    <app-card-carrito [producto]="item" ></app-card-carrito>
+  }
 
   <ion-button expand="block" color="primary">Pedir</ion-button>
 </ion-content>

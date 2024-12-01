@@ -2,6 +2,9 @@ ion-card {
     box-shadow: none;
 }
 
-ion-card ion-item {
-    --border-color: #000000;
+
+.input-cantidad {
+  text-align: center; /* Centra el texto para que el número se vea bien alineado */
+  font-size: 1.2em; /* Aumenta el tamaño del texto */
 }
+

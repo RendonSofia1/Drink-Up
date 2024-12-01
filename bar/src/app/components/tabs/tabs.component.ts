@@ -36,7 +36,7 @@ export class TabsComponent implements OnInit {
 
   constructor() {
     addIcons({ wineSharp, cart, receiptOutline, personCircle, restaurant, peopleCircleOutline });
-    this.userType = 'administrador';
+    this.userType = 'mesa';
     this.setTabs();
   }
 

@@ -1,16 +1,36 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { ToastComponent } from '../toast/toast.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ModalController, IonCol, IonRow, IonGrid, IonLabel, IonInput, IonButton } from '@ionic/angular/standalone';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  ModalController,
+  IonCol,
+  IonRow,
+  IonGrid,
+  IonLabel,
+  IonInput,
+  IonButton,
+} from '@ionic/angular/standalone';
 import { BebidaService } from 'src/app/services/bebida.service';
-
 
 @Component({
   selector: 'app-drink-modal',
   standalone: true,
   templateUrl: './drink-modal.component.html',
   styleUrls: ['./drink-modal.component.scss'],
-  imports: [IonButton, IonInput, IonLabel, IonGrid, IonRow, IonCol, ReactiveFormsModule],
+  imports: [
+    IonButton,
+    IonInput,
+    IonLabel,
+    IonGrid,
+    IonRow,
+    IonCol,
+    ReactiveFormsModule,
+  ],
   providers: [ToastComponent],
 })
 export class DrinkModalComponent implements OnInit {
@@ -40,7 +60,6 @@ export class DrinkModalComponent implements OnInit {
       await this.toast.showToast('Por favor complete todos los campos');
       return;
     }
-
     try {
       if (this.modalType === 'edit') {
         // Lógica para actualizar al empleado
@@ -81,11 +100,15 @@ export class DrinkModalComponent implements OnInit {
 
   restrictDecimals(event: any) {
     const input = event.target as HTMLInputElement;
-    const value = input.value;
-    // Permite solo números con hasta dos decimales
-    const validValue = value.match(/^\d+(\.\d{0,2})?/)?.[0] || '';
-    input.value = validValue;
+    let value = input.value;
+
+    if (value.includes('.')) {
+      const [integer, decimal] = value.split('.');
+      value = decimal.length > 2 ? `${integer}.${decimal.slice(0, 2)}` : value;
+    }
+    input.value = value;
   }
+
 
   ngOnInit() {
     if (this.modalType === 'edit' && this.bebidaEdit) {
