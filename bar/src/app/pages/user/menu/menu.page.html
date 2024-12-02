@@ -3,11 +3,6 @@
 <ion-content [fullscreen]="true">
   <ion-grid fixed>
     <ion-row>
-      <ion-col size="12">
-        <ion-button expand="block" (click)="limpiarlocal()">Limpiar</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
       @for (drink of listaBebidas; track $index) {
         <ion-col size="6">
           <ion-card>

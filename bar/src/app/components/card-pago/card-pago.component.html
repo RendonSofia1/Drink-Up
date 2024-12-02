@@ -4,42 +4,29 @@
     <ion-grid style="margin: 0; padding: 0">
       <ion-row>
         <ion-col>
-          <ion-label>Mesa #4</ion-label>
+          <ion-label>{{ticket.mesa}}</ion-label>
         </ion-col>
       </ion-row>
       <ion-row class="ion-align-items-center">
         <ion-col size="7" class="ion-text-left">
-          <ion-card-title>Comanda #234</ion-card-title>
-          <ion-card-subtitle>Método de pago: Débito</ion-card-subtitle>
+          <ion-card-title>Ticket</ion-card-title>
+          <ion-card-subtitle>Método de pago: {{ticket.pago}} </ion-card-subtitle>
         </ion-col>
         <ion-col size="5" class="ion-text-right">
-          <ion-badge>$ 3677.00 MXN</ion-badge>
+          <ion-badge>{{ticket.total | currency}} MXN</ion-badge>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card-header>
   <ion-card-content>
     <ion-list lines="full">
-      <ion-item>
-        <ion-label>Orden #1234</ion-label>
-        <ion-button fill="none" size="medium" (click)="OpenDatailOrden()">
-          <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-label>Orden #1234</ion-label>
-        <ion-button fill="none" size="medium" (click)="OpenDatailOrden()">
-          <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-label>Orden #1234</ion-label>
-        <ion-button fill="none" size="medium" (click)="OpenDatailOrden()">
-          <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
+      @for (detalle of listaComandas; track $index) {
+        <ion-item button detail="true" (click)="OpenDatailOrden(detalle.idComanda)">
+          <ion-label>Orden #{{detalle.idComanda}}</ion-label>
+        </ion-item>
+      }
     </ion-list>
-    <ion-button fill="outline">
+    <ion-button fill="outline" (click)="actualizarComandas(ticket.pago)">
       Completar Pago
     </ion-button>
   </ion-card-content>

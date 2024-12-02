@@ -1,4 +1,4 @@
-    <ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Detalle de Orden</ion-title>
     <ion-buttons slot="start">
@@ -8,5 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-list-checkout></app-list-checkout>
+  <div class="ion-margin">
+    <app-list-checkout [comanda]="comanda"></app-list-checkout>
+  </div>
 </ion-content>

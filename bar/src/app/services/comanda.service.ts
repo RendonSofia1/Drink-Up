@@ -15,6 +15,10 @@ export class ComandaService {
     return this._http.get(`${API}/comanda`);
   }
 
+  getComandaById(id: number){
+    return this._http.get(`${API}/comanda/${id}`);
+  }
+
   getComandasByMesa (id: number) {
     return this._http.get(`${API}/comanda/mesa/${id}`);
   }
@@ -25,6 +29,10 @@ export class ComandaService {
 
   getComandasByUser (idUser: number, status: number) {
     return this._http.get(`${API}/comanda/user/${idUser}/estatus/${status}`);
+  }
+
+  getComandasByMesaEstatus(idMesa: number, status: number){
+    return this._http.get(`${API}/comanda/mesa/${idMesa}/estatus/${status}`);
   }
 
   newComanda(body:any){

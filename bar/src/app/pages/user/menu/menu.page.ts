@@ -70,9 +70,5 @@ export class MenuPage implements OnInit {
     await this.toast.showToast('Producto agregado al carrito','medium', 'top');
   }
 
-  limpiarlocal(){
-    this._carritoService.vaciarCarrito();
-  }
-
   ngOnInit() {}
 }

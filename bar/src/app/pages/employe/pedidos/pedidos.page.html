@@ -54,8 +54,8 @@
   }
 
   @if (selectedSegment === 'pago') {
-  <app-card-pago></app-card-pago>
-  <app-card-pago></app-card-pago>
-  <app-card-pago></app-card-pago>
+    @for (comanda of listaPagoComandas; track $index) {
+      <app-card-pago [ticket]="comanda"></app-card-pago>
+    }
   }
 </ion-content>

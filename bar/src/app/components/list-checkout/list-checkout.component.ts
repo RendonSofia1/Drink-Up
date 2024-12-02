@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IonBadge, IonItem, IonLabel, IonThumbnail, IonItemDivider, IonItemGroup } from '@ionic/angular/standalone';
 
 @Component({
@@ -7,20 +7,20 @@ import { IonBadge, IonItem, IonLabel, IonThumbnail, IonItemDivider, IonItemGroup
   standalone: true,
   templateUrl: './list-checkout.component.html',
   styleUrls: ['./list-checkout.component.scss'],
-  imports: [IonItemGroup, IonItemDivider,  CommonModule, IonItem,IonLabel, IonBadge, IonThumbnail]
+  imports: [IonItemGroup, IonItemDivider, CommonModule, IonItem, IonLabel, IonBadge, IonThumbnail],
 })
-export class ListCheckoutComponent  implements OnInit {
-  @Input() comanda:any;
-  listaDetalleComanda:any[] = [];
-  constructor() { }
+export class ListCheckoutComponent implements OnChanges {
+  @Input() comanda: any;
+  listaDetalleComanda: any[] = [];
 
-  ngOnInit() {
-    if (this.comanda?.detalleComanda) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['comanda'] && this.comanda?.detalleComanda) {
       this.listaDetalleComanda = this.comanda.detalleComanda;
+      console.log('Detalle actualizado:', this.listaDetalleComanda);
     }
   }
 
-  asignarEstado(estado: number): { text: string, color: string } {
+  asignarEstado(estado: number): { text: string; color: string } {
     switch (estado) {
       case 1:
         return { text: 'En preparación', color: 'medium' };
@@ -29,9 +29,7 @@ export class ListCheckoutComponent  implements OnInit {
       case 3:
         return { text: 'Entregado', color: 'success' };
       default:
-        return { text: 'Desconocido', color: 'dark' };
+        return { text: 'Finalizado', color: 'dark' };
     }
   }
-
-
 }

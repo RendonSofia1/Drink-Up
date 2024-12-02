@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   IonCard,
   IonLabel,
@@ -13,9 +13,10 @@ import {
   IonList,
   IonItem,
   IonButton,
-  IonIcon,
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ComandaService } from 'src/app/services/comanda.service';
 
 @Component({
   selector: 'app-card-pago',
@@ -23,7 +24,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./card-pago.component.scss'],
   standalone: true,
   imports: [
-    IonIcon,
     IonButton,
     IonList,
     IonCardContent,
@@ -36,15 +36,36 @@ import { Router } from '@angular/router';
     IonCardHeader,
     IonLabel,
     IonCard,
-    IonItem
+    IonItem,
+    CommonModule
   ],
 })
 export class CardPagoComponent implements OnInit {
-  constructor(private route: Router) {}
+  @Input() ticket: any;
+  listaComandas:any[] = [];
+  constructor(private route: Router, private _comandaService: ComandaService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.ticket?.comanda) {
+      this.listaComandas = this.ticket.comanda;
+    }
+    console.log(this.ticket.comanda);
+  }
 
-  OpenDatailOrden() {
-    this.route.navigateByUrl('/detail');
+  actualizarComandas(metodoPago: string) {
+    this.listaComandas.forEach((comanda) => {
+      const body = {
+        estatusComanda: 5,
+        metodoPago: metodoPago,
+      };
+      this._comandaService
+        .updateComanda(body, comanda.idComanda)
+        .subscribe((resp: any) => {
+          if (resp.statusCode === 200) console.log('Estatus actualizado');
+        });
+    });
+  }
+  OpenDatailOrden(id: number) {
+    this.route.navigateByUrl(`/detail/${id}`);
   }
 }
