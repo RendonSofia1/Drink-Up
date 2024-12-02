@@ -59,8 +59,8 @@ export class HomePage {
       (resp: any) => {
         if (resp && resp.statusCode === 200) {
           this._loginService.setUser(resp.usuario);
-          this.router.navigateByUrl('/tabs/cuenta', { skipLocationChange: true }).then(() => {
-            this.router.navigate([decodeURIComponent(this.router.url)]);
+          this.router.navigate(['/tabs/cuenta'], { replaceUrl: true }).then(() => {
+            window.location.reload();
           });
         }
       },
@@ -81,8 +81,8 @@ export class HomePage {
       (resp: any) => {
         if (resp && resp.statusCode === 200) {
           this._loginService.setMesaUser(resp.mesa);
-          this.router.navigateByUrl('/tabs/mesa', { skipLocationChange: true }).then(() => {
-            this.router.navigate([decodeURIComponent(this.router.url)]);
+          this.router.navigate(['/tabs/mesa'], { replaceUrl: true }).then(() => {
+            window.location.reload();
           });
         }
       },

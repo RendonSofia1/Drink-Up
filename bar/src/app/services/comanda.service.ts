@@ -9,6 +9,8 @@ export class ComandaService {
 
   constructor(private _http: HttpClient) { }
 
+  comandaActualizada = new EventEmitter<void>();
+
   getComandas(){
     return this._http.get(`${API}/comanda`);
   }
@@ -18,11 +20,11 @@ export class ComandaService {
   }
 
   getComandasByStatus (status: number) {
-    return this._http.get(`${API}/comanda/status/${status}`);
+    return this._http.get(`${API}/comanda/estatus/${status}`);
   }
 
-  getComandasByUser (id: number, status: number) {
-    return this._http.get(`${API}/comanda/user/${id}/status/${status}`);
+  getComandasByUser (idUser: number, status: number) {
+    return this._http.get(`${API}/comanda/user/${idUser}/estatus/${status}`);
   }
 
   newComanda(body:any){
@@ -34,6 +36,10 @@ export class ComandaService {
   }
 
   updateComanda(body:any, id:number){
-    return this._http.patch(`${API}/comanda/${id}`, body);
+    const request = this._http.patch(`${API}/comanda/${id}`, body);
+    request.subscribe(() => this.comandaActualizada.emit());
+    return request;
   }
+
+
 }

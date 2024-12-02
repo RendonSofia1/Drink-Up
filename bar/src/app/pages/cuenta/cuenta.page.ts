@@ -37,17 +37,19 @@ export class CuentaPage implements OnInit {
     private route: Router,
     private _loginService: LoginService
   ) {
-    this.user = this._loginService.getUser();
-    console.log(this.user);
+
   }
 
 
 
   cerrarSesion() {
     this._loginService.logout();
-    this.route.navigate(['/home']);
+    this.route.navigate(['/home'], { replaceUrl: true });
   }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._loginService.logoutMesaUser();
+    this.user = this._loginService.getUser();
+  }
 }

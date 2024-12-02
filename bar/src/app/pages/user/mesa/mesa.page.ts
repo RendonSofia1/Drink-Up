@@ -40,8 +40,7 @@ export class MesaPage implements OnInit {
     private toast: ToastController,
     private _carritoServ: CarritoService,
   ) {
-    this.user = JSON.parse(localStorage.getItem('mesaUser') || '{}');
-    console.log(this.user);
+
   }
 
   async cerrarSesion() {
@@ -77,12 +76,16 @@ export class MesaPage implements OnInit {
             }
             this._carritoServ.vaciarCarrito();
             localStorage.removeItem('mesaUser');
-            this.route.navigate(['/home']);
+            this.route.navigate(['/home'], { replaceUrl: true });
           },
         },
       ],
     });
     await alert.present();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.removeItem('user');
+    this.user = JSON.parse(localStorage.getItem('mesaUser') || '{}');
+    console.log(this.user);
+  }
 }

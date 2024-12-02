@@ -1,9 +1,26 @@
 <app-toolbar title="Checkout"></app-toolbar>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <app-list-checkout></app-list-checkout>
-  <app-list-checkout></app-list-checkout>
 
-  <ion-button expand="block" color="primary" (click)="openPagar()">Pagar</ion-button>
+  @if (listaComandas.length > 0) {
+    <ion-list>
+      <ion-list-header>
+        <ion-badge color="dark" style="padding: 5px 8px;">TOTAL: {{total | currency}} </ion-badge>
+      </ion-list-header>
+      @for (comanda of listaComandas; track $index) {
+      <app-list-checkout [comanda]="comanda"></app-list-checkout>
+      }
+    </ion-list>
+  } @else {
+    <ion-text color="medium" class="ion-text-center">
+      <h3> No ha realizado pedidos </h3>
+    </ion-text>
+  }
 
+
+
+
+  <ion-button expand="block" color="primary" (click)="openPagar()">
+    Pagar
+  </ion-button>
 </ion-content>

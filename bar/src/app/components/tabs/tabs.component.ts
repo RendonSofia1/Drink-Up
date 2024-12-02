@@ -137,8 +137,8 @@ export class TabsComponent implements OnInit {
   }
 
   getRoleName(rol: number): string {
-    if (rol === 1)
-      return 'empleado';
-    return 'administrador';
+    if (rol === 0)
+      return 'administrator';
+    return 'empleado';
   }
 }

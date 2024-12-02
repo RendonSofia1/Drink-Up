@@ -54,7 +54,8 @@ export class CarritoPage implements OnInit {
       (resp: any) => {
         if (resp && resp.statusCode === 200) {
           idComanda = resp.newComanda.idComanda;
-          this.detallerComanda(idComanda);
+          this.detalleComanda(idComanda);
+          this.cambiarEstatusComanda(idComanda);
         }
       },
       (error) => {
@@ -65,7 +66,7 @@ export class CarritoPage implements OnInit {
     );
   }
 
-  detallerComanda(idComanda: number) {
+  detalleComanda(idComanda: number) {
     this.listaProductos.forEach((producto) => {
       const bodyp = {
         fkIdBebida: producto.id,
@@ -88,6 +89,17 @@ export class CarritoPage implements OnInit {
         }
       );
     });
+  }
+
+  cambiarEstatusComanda(idComanda: number) {
+    const body = {
+      estatusComanda: 1,
+      metodoPago: ''
+    };
+    this._comandaService.updateComanda(body, idComanda).subscribe((resp:any) => {
+      if (resp.statusCode === 200)
+        console.log('Estatus actualizado');
+    })
   }
 
   ngOnInit() {
