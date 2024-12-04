@@ -32,9 +32,9 @@
   }
   </ion-text>
 
-  @for (comanda of listaBartenderComandas; track $index) {
-  <app-list-comanda [comanda]="comanda"></app-list-comanda>
-  }
+  <ng-container *ngFor="let comanda of listaBartenderComandas; let i = index; trackBy: trackById">
+    <app-list-comanda [comanda]="comanda"></app-list-comanda>
+  </ng-container>
 }
 
   @if (selectedSegment === 'entrega') {
@@ -47,15 +47,24 @@
     }
     </ion-text>
 
-    @for (comanda of listaMeseroComandas; track $index) {
+    <ng-container *ngFor="let comanda of listaMeseroComandas; let i = index; trackBy: trackById">
       <app-list-comanda [comanda]="comanda"></app-list-comanda>
-    }
-
+    </ng-container>
   }
 
   @if (selectedSegment === 'pago') {
-    @for (comanda of listaPagoComandas; track $index) {
-      <app-card-pago [ticket]="comanda"></app-card-pago>
+
+    <ion-text
+    color="medium"
+    class="ion-text-center"
+    >
+    @if (listaPagoComandas.length === 0) {
+      <h3> No hay pedidos </h3>
     }
+    </ion-text>
+
+    <ng-container *ngFor="let comanda of listaPagoComandas; let i = index; trackBy: trackById">
+      <app-card-pago [ticket]="comanda"></app-card-pago>
+    </ng-container>
   }
 </ion-content>

@@ -49,6 +49,8 @@ export class HomePage {
     this.mesaForm = this.fb.group({
       idMesa: [null, Validators.required],
     });
+
+    
   }
 
   segmentChanged(event: any) {

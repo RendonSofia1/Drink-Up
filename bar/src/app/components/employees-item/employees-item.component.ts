@@ -52,16 +52,16 @@ export class EmployeesItemComponent implements OnInit {
           role: 'destructive',
           cssClass: 'danger-button',
           handler: async () => {
-            console.log('Remove clicked');
-            try {
-              const resp = await this._empleadoServ.deleteEmpleado(idUsuario);
-              console.log(resp);
-              this._empleadoServ.setEmpleadoEliminado(idUsuario);
-              await this.toast.showToast('Empleado eliminado exitosamente');
-            } catch (err) {
-              console.error('Error al eliminar el empleado:', err);
-              await this.toast.showToast('Error al eliminar');
-            }
+            this._empleadoServ.deleteEmpleado(idUsuario).subscribe((response:any)=>{
+              if (response.statusCode === 200) {
+                this._empleadoServ.setEmpleadoEliminado(idUsuario);
+                this.toast.showToast('Empleado eliminado exitosamente');
+              } else{
+                this.toast.showToast('Error al eliminar');
+                console.log(response);
+              }
+
+            })
           },
         },
       ],

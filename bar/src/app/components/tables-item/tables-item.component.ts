@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { IonLabel, IonItem, IonButton, IonIcon, ModalController, AlertController } from '@ionic/angular/standalone';
+import { IonLabel, IonItem, IonButton, IonIcon, ModalController, AlertController, IonBadge } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { add, pencil, personOutline, trash } from 'ionicons/icons';
 import { TablesModalComponent } from '../tables-modal/tables-modal.component';
@@ -11,7 +11,7 @@ import { ToastComponent } from '../toast/toast.component';
   standalone: true,
   templateUrl: './tables-item.component.html',
   styleUrls: ['./tables-item.component.scss'],
-  imports: [IonIcon, IonButton, IonItem, IonLabel, ],
+  imports: [IonBadge, IonIcon, IonButton, IonItem, IonLabel, ],
   providers: [ToastComponent],
 })
 export class TablesItemComponent  implements OnInit {
@@ -56,15 +56,15 @@ export class TablesItemComponent  implements OnInit {
           cssClass: 'danger-button',
           handler: async () => {
             console.log('Remove clicked');
-            try {
-              const resp = await this._mesaServ.deleteMesa(id);
-              console.log(resp);
-              this._mesaServ.emitMesaEliminado(id);
-              await this.toast.showToast('Mesa eliminada exitosamente');
-            } catch (err) {
-              console.error('Error al eliminar mesa:', err);
-              await this.toast.showToast('Error al eliminar');
-            }
+            this._mesaServ.deleteMesa(id).subscribe((response:any) => {
+              if (response.statusCode === 200) {
+                this._mesaServ.emitMesaEliminado(id);
+                this.toast.showToast('Mesa eliminada exitosamente');
+              } else {
+                this.toast.showToast('Error al eliminar', 'danger');
+              }
+              console.log(response);
+            })
           },
         },
       ],

@@ -111,6 +111,7 @@ export class PedidosPage implements OnInit {
               .subscribe(
                 (resp: any) => {
                   if (resp.statusCode === 200) {
+                    console.log(resp);
                     const ticket = {
                       id: mesa.idMesa,
                       total: resp.comandas.reduce(
@@ -121,11 +122,13 @@ export class PedidosPage implements OnInit {
                       pago: resp.comandas[0].metodoPago,
                       comanda: resp.comandas,
                     };
+                    console.log(ticket);
                     tickets.push(ticket);
 
                     if (index === mesas.length - 1) {
-                      this._ticketService.agregarTickets(tickets);
+                      // this._ticketService.agregarTickets(tickets);
                       this.listaPagoComandas = tickets;
+                      console.log(this.listaPagoComandas);
                     }
                   }
                 },
@@ -140,6 +143,10 @@ export class PedidosPage implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  trackById(index: number, item: any): number {
+    return item.idComanda;
   }
 
   ngOnInit() {

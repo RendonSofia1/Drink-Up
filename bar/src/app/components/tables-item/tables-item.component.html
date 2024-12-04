@@ -1,20 +1,24 @@
 <ion-item>
   <div slot="start">
     <ion-label>
-      <h2>{{ table.nombreMesa }}</h2>
+      <div style="display: flex; align-items: center;">
+        <h2 style="margin-right: 8px;">{{ table.nombreMesa }}</h2>
+        <ion-badge color="light">Id: {{ table.idMesa }}</ion-badge>
+      </div>
       <p>
         Mesero:
-        {{ table.usuario.nombreUsuario}}
-        {{ table.usuario.apellidoPat}}
+        {{ table.usuario.nombreUsuario }}
+        {{ table.usuario.apellidoPat }}
       </p>
     </ion-label>
   </div>
+
   <div slot="end">
     <ion-button fill="clear" color="danger" (click)="presentDeleteAlert(table.idMesa)">
-      <ion-icon name="trash"> </ion-icon>
+      <ion-icon name="trash"></ion-icon>
     </ion-button>
     <ion-button fill="clear" color="primary" (click)="openModalEdit(table)">
-      <ion-icon name="pencil" color="warning"> </ion-icon>
+      <ion-icon name="pencil" color="warning"></ion-icon>
     </ion-button>
   </div>
 </ion-item>

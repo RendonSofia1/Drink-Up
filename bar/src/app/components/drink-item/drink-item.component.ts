@@ -58,16 +58,15 @@ export class DrinkItemComponent implements OnInit {
           role: 'destructive',
           cssClass: 'danger-button',
           handler: async () => {
-            console.log('Remove clicked');
-            try {
-              const resp = await this._bebidasSev.deleteBebida(id);
-              console.log(resp);
-              this._bebidasSev.setBebidaEliminado(id);
-              await this.toast.showToast('Bebida eliminada exitosamente');
-            } catch (err) {
-              console.error('Error al eliminar bebida:', err);
-              await this.toast.showToast('Error al eliminar');
-            }
+            this._bebidasSev.deleteBebida(id).subscribe((response:any) => {
+              if (response.statusCode === 200) {
+                this._bebidasSev.setBebidaEliminado(id);
+                this.toast.showToast('Bebida eliminada exitosamente');
+              } else {
+                this.toast.showToast('Error al eliminar');
+              }
+              console.log(response);
+            })
           },
         },
       ],

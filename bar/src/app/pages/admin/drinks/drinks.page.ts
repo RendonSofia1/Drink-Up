@@ -57,7 +57,6 @@ export class DrinksPage implements OnInit {
     this._drinkService.getBebidas().subscribe((data: any) => {
       console.log(data);
       this.listaBebidas = data.bebidas;
-      console.log(this.listaBebidas);
     });
   }
 

@@ -44,7 +44,6 @@ export class DetailPage implements OnInit {
     this._comandaService.getComandaById(this.id).subscribe((data: any) => {
       if (data.statusCode === 200) {
         this.comanda = data.comandaFind;
-        console.log('Comanda cargada:', this.comanda);
       }
     });
   }
@@ -54,7 +53,6 @@ export class DetailPage implements OnInit {
       const idParam = params.get('id');
       if (idParam) {
         this.id = +idParam;
-        console.log('ID recibido:', this.id);
       }
     });
     this.obtenerComanda();
