@@ -2,10 +2,11 @@
 
 <ion-content [fullscreen]="true">
   <ion-searchbar
-    [debounce]="1000"
+    [debounce]="250"
     show-clear-button="focus"
-    placeholder="Busca una bebida"
+    placeholder="Busca una mesa"
     class="ion-padding"
+    (ionInput)="buscarMesas($event)"
   ></ion-searchbar>
 
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">

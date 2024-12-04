@@ -46,7 +46,6 @@ export class EmployeesModalComponent implements OnInit {
   private fb = inject(FormBuilder);
   nForm!: FormGroup;
   private toast = inject(ToastComponent);
-  // employeeData: { name: string; role: string } = { name: '', role: '' };
 
   constructor(
     private modalController: ModalController,

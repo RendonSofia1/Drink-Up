@@ -12,8 +12,7 @@ import {
   IonCardTitle,
   IonCardSubtitle,
   IonButton,
-  IonIcon,
-} from '@ionic/angular/standalone';
+  IonIcon, IonSearchbar } from '@ionic/angular/standalone';
 import { ToolbarComponent } from '../../../components/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { cartOutline } from 'ionicons/icons';
@@ -27,7 +26,7 @@ import { ToastComponent } from 'src/app/components/toast/toast.component';
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonSearchbar,
     IonIcon,
     IonButton,
     IonCardSubtitle,
@@ -47,15 +46,14 @@ import { ToastComponent } from 'src/app/components/toast/toast.component';
 })
 export class MenuPage implements OnInit {
   listaBebidas: any[] = [];
+  busquedaRealizada = false;
   private toast = inject(ToastComponent);
   constructor(
-    private _bebidaService: BebidaService,
     private _carritoService: CarritoService,
+    private _drinkService: BebidaService
   ) {
     addIcons({ cartOutline });
-    this._bebidaService.getBebidas().subscribe((res: any) => {
-      this.listaBebidas = res.bebidas;
-    });
+    this.obtenerBebidas();
   }
   async agregarAlCarrito(drink: any) {
     const producto = {
@@ -68,6 +66,32 @@ export class MenuPage implements OnInit {
     };
     this._carritoService.agregarAlCarrito(producto);
     await this.toast.showToast('Producto agregado al carrito','medium', 'top');
+  }
+
+  obtenerBebidas(){
+    this._drinkService.getBebidas().subscribe((data: any) => {
+      console.log(data);
+      this.listaBebidas = data.bebidas;
+    });
+  }
+
+  buscarBebidas(event: any) {
+    const query = event.target.value?.trim();
+    if (query) {
+      this._drinkService.getBebidasByNombre(query).subscribe(
+        (data: any) => {
+          this.listaBebidas = data.bebidas;
+          this.busquedaRealizada = true;
+        },
+        (error) => {
+          this.listaBebidas = [];
+          this.busquedaRealizada = true;
+        }
+      );
+    } else {
+      this.obtenerBebidas();
+      this.busquedaRealizada = false;
+    }
   }
 
   ngOnInit() {}

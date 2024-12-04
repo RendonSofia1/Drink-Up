@@ -15,6 +15,10 @@ export class EmpleadoService {
     return this._http.get(`${API}/usuarios`);
   }
 
+  getEmpleadosByNombre(nombre: string){
+    return this._http.get(`${API}/usuarios/search/${nombre}`);
+  }
+
   newEmpleado(body:any){
     return this._http.post(`${API}/usuarios`, body);
   }

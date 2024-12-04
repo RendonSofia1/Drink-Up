@@ -38,6 +38,8 @@ import { MesaService } from 'src/app/services/mesa.service';
 })
 export class TablesPage implements OnInit {
   listaMesas: any[] = [];
+  busqueda = false;
+
   constructor(
     private modalController: ModalController,
     private _mesasServ: MesaService,
@@ -64,10 +66,28 @@ export class TablesPage implements OnInit {
     await modal.present();
   }
 
+  buscarMesas(event: any) {
+    const query = event.target.value?.trim();
+    if (query) {
+      this._mesasServ.getMesasByNombre(query).subscribe(
+        (data: any) => {
+          this.listaMesas = data.mesas;
+          this.busqueda = true;
+        },
+        (error) => {
+          this.listaMesas = [];
+          this.busqueda = true;
+        }
+      );
+    } else {
+      this.obtenerMesas();
+      this.busqueda = false;
+    }
+  }
+
   obtenerMesas(){
     this._mesasServ.getMesas().subscribe((data: any) => {
       this.listaMesas = data.mesas;
-      console.log(this.listaMesas);
     });
   }
 

@@ -72,12 +72,10 @@ export class PedidosPage implements OnInit {
         (data: any) => {
           if (data.statusCode === 200) {
             this.listaBartenderComandas = data.comandas;
-            console.log(this.listaBartenderComandas);
           }
         },
         (error: any) => {
           if (error.status === 404) this.listaBartenderComandas = [];
-          else console.log(error);
         }
       );
     }
@@ -91,7 +89,6 @@ export class PedidosPage implements OnInit {
         },
         (error: any) => {
           if (error.status === 404) this.listaMeseroComandas = [];
-          else console.log(error);
         }
       );
 
@@ -105,13 +102,13 @@ export class PedidosPage implements OnInit {
       (data: any) => {
         if (data.statusCode === 200) {
           const mesas = data.mesas;
+          let procesadas = 0;
           mesas.forEach((mesa: any, index: number) => {
             this._comandasService
               .getComandasByMesaEstatus(mesa.idMesa, 4)
               .subscribe(
                 (resp: any) => {
                   if (resp.statusCode === 200) {
-                    console.log(resp);
                     const ticket = {
                       id: mesa.idMesa,
                       total: resp.comandas.reduce(
@@ -119,21 +116,22 @@ export class PedidosPage implements OnInit {
                         0
                       ),
                       mesa: mesa.nombreMesa,
-                      pago: resp.comandas[0].metodoPago,
+                      pago: resp.comandas[0].metodoPago || '',
                       comanda: resp.comandas,
                     };
-                    console.log(ticket);
                     tickets.push(ticket);
+                    procesadas++;
 
-                    if (index === mesas.length - 1) {
-                      // this._ticketService.agregarTickets(tickets);
+                    if (procesadas === mesas.length) {
                       this.listaPagoComandas = tickets;
-                      console.log(this.listaPagoComandas);
                     }
                   }
                 },
                 (error: any) => {
-                  if (error.statusCode === 500) console.log(error);
+                  procesadas++;
+                  if (procesadas === mesas.length) {
+                    this.listaPagoComandas = tickets;
+                  }
                 }
               );
           });

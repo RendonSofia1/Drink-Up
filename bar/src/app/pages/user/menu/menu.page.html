@@ -1,6 +1,13 @@
 <app-toolbar title="Menú"></app-toolbar>
 
 <ion-content [fullscreen]="true">
+  <ion-searchbar
+    [debounce]="250"
+    show-clear-button="focus"
+    placeholder="Busca una bebida"
+    class="ion-padding"
+    (ionInput)="buscarBebidas($event)"
+  ></ion-searchbar>
   <ion-grid fixed>
     <ion-row>
       @for (drink of listaBebidas; track $index) {

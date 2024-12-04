@@ -22,6 +22,10 @@ export class MesaService {
     return this._http.get(`${API}/mesas/usuario/${idUser}`);
   }
 
+  getMesasByNombre(name: string){
+    return this._http.get(`${API}/mesas/search/${name}`);
+  }
+
   newMesa(body:any){
     return this._http.post(`${API}/mesas`, body);
   }

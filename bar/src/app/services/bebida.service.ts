@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 const API = 'http://localhost:3002/api/v1';
 
 @Injectable({
@@ -12,6 +13,10 @@ export class BebidaService {
 
   getBebidas(){
     return this._http.get(`${API}/bebidas`);
+  }
+
+  getBebidasByNombre(nombre:string){
+    return this._http.get(`${API}/bebidas/search/${nombre}`);
   }
 
   newBebida(body:any){

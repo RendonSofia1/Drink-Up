@@ -37,6 +37,7 @@ import { EmpleadoService } from 'src/app/services/empleado.service';
 })
 export class EmployeesPage implements OnInit {
   listaEmpleados: any[] = [];
+  busqueda = false;
   constructor(
     private modalController: ModalController,
     private _empleadoServ: EmpleadoService
@@ -59,6 +60,25 @@ export class EmployeesPage implements OnInit {
       this.listaEmpleados = data.usuarios;
       console.log(this.listaEmpleados);
     });
+  }
+
+  buscarEmpleados(event: any) {
+    const query = event.target.value?.trim();
+    if (query) {
+      this._empleadoServ.getEmpleadosByNombre(query).subscribe(
+        (data: any) => {
+          this.listaEmpleados = data.usuarios;
+          this.busqueda = true;
+        },
+        (error) => {
+          this.listaEmpleados = [];
+          this.busqueda = true;
+        }
+      );
+    } else {
+      this.obtenerEmpleados();
+      this.busqueda = false;
+    }
   }
   async openModalAdd() {
     const modal = await this.modalController.create({

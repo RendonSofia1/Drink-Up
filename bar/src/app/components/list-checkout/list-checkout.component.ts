@@ -16,7 +16,6 @@ export class ListCheckoutComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['comanda'] && this.comanda?.detalleComanda) {
       this.listaDetalleComanda = this.comanda.detalleComanda;
-      console.log('Detalle actualizado:', this.listaDetalleComanda);
     }
   }
 

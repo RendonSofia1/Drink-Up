@@ -8,8 +8,7 @@ import {
   IonFabButton,
   IonIcon,
   ModalController,
-  AlertController,
-} from '@ionic/angular/standalone';
+  AlertController, IonText } from '@ionic/angular/standalone';
 import { ToolbarComponent } from '../../../components/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
@@ -22,7 +21,7 @@ import { DrinkItemComponent } from 'src/app/components/drink-item/drink-item.com
   templateUrl: './drinks.page.html',
   styleUrls: ['./drinks.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonText,
     IonIcon,
     IonFabButton,
     IonFab,
@@ -36,6 +35,7 @@ import { DrinkItemComponent } from 'src/app/components/drink-item/drink-item.com
 })
 export class DrinksPage implements OnInit {
   listaBebidas: any[] = [];
+  busquedaRealizada = false;
   constructor(
     private modalController: ModalController,
     private _drinkService:BebidaService,
@@ -58,6 +58,25 @@ export class DrinksPage implements OnInit {
       console.log(data);
       this.listaBebidas = data.bebidas;
     });
+  }
+
+  buscarBebidas(event: any) {
+    const query = event.target.value?.trim();
+    if (query) {
+      this._drinkService.getBebidasByNombre(query).subscribe(
+        (data: any) => {
+          this.listaBebidas = data.bebidas;
+          this.busquedaRealizada = true;
+        },
+        (error) => {
+          this.listaBebidas = [];
+          this.busquedaRealizada = true;
+        }
+      );
+    } else {
+      this.obtenerBebidas();
+      this.busquedaRealizada = false;
+    }
   }
 
   dismissModal() {
